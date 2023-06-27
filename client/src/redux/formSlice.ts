@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//type
 import { State } from "./types";
 
-//api
 import { postStreamer } from "./api";
 
 const initialState: State = {

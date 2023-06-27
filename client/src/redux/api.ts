@@ -1,13 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-//type
-import { PayloadData } from "./types";
+import { FormValues } from "../types";
 
 import axios from "axios";
 
 export const postStreamer = createAsyncThunk(
   "postStreamer",
-  async (data: any, thunkApi) => {
+  async (data: FormValues, thunkApi) => {
     const URL = `https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/`;
     try {
       const response = await axios.post(URL, data);
