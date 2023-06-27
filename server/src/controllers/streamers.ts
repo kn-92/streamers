@@ -3,7 +3,6 @@ import { validationResult } from "express-validator/src/validation-result";
 
 import { Streamer } from "../models/streamer";
 import { RequestBody, StatusError } from "../types";
-import { error } from "console";
 
 export const postStreamer: RequestHandler = (req, res, next) => {
   const errors = validationResult(req);
@@ -40,4 +39,35 @@ export const postStreamer: RequestHandler = (req, res, next) => {
     .catch((err) => console.log(err));
 };
 
-// export const getStreamers: RequestHandler = (req, res, next) => {};
+export const getStreamers: RequestHandler = async (req, res, next) => {
+  //   Streamer.find()
+  //     .then((result) =>
+  //       res
+  //         .status(200)
+  //         .json({ streamers: result, message: "Streamers fetched succesfully" })
+  //     )
+  //     .catch((error) => {
+  //       console.log(error);
+  //       const err: StatusError = new Error("Fetching from DB failed");
+  //       error.statusCode = 404;
+  //       return next(error);
+  //     });
+  try {
+    const streamers = await Streamer.find();
+    if (!streamers) {
+      return res
+        .status(200)
+        .json({ streamers: streamers, message: "No streamers in DB" });
+    }
+    res.status(200).json({
+      streamers: streamers,
+      message: "Streamers fetched successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    const err: StatusError = new Error("Fetching from DB failed");
+    err.statusCode = 500;
+
+    return next(err);
+  }
+};

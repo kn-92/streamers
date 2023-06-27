@@ -2,14 +2,11 @@ import { Router } from "express";
 
 import { body } from "express-validator";
 
-import { postStreamer } from "../controllers/streamers";
+import { postStreamer, getStreamers } from "../controllers/streamers";
 
 const router = Router();
 
-// router.get("/streamers", (req, res, next) => {
-//   res.status(200).json({ kk: "working" });
-//   next();
-// });
+router.get("/streamers", getStreamers);
 
 router.post(
   "/streamers",

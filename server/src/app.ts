@@ -1,9 +1,4 @@
-import express, {
-  ErrorRequestHandler,
-  NextFunction,
-  Request,
-  Response,
-} from "express";
+import express from "express";
 import bodyParser from "body-parser";
 import "dotenv/config";
 import mongoose from "mongoose";
