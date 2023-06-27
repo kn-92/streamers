@@ -1,10 +1,16 @@
-import express from "express";
+import express, {
+  ErrorRequestHandler,
+  NextFunction,
+  Request,
+  Response,
+} from "express";
 import bodyParser from "body-parser";
 import "dotenv/config";
 import mongoose from "mongoose";
 import cors from "cors";
 
 import streamersRoutes from "./routes/streamers";
+import { errorMiddlewareController } from "./controllers/error";
 
 const app = express();
 
@@ -36,13 +42,16 @@ app.use((req, res, next) => {
   next();
 });
 
+//error middleware
+app.use(errorMiddlewareController);
+
 mongoose.connect(URI).then(
   () => {
     app.listen(PORT, () => {
       console.log("Server is running!!!");
     });
   },
-  (err) => {
-    console.log(err);
+  (error) => {
+    console.log(error);
   }
 );

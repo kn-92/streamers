@@ -56,7 +56,7 @@ const Form = () => {
           <option value="TikTok">TikTok</option>
           <option value="Kick">Kick</option>
           <option value="Rumble">Rumble</option>
-          {/* <option value="cos">cos</option> */}
+          <option value="cos">cos</option>
         </select>
         {errors.platform?.message && (
           <p className="form-error-message">

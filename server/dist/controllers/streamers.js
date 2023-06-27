@@ -6,10 +6,14 @@ var streamer_1 = require("../models/streamer");
 var postStreamer = function (req, res, next) {
     var errors = (0, validation_result_1.validationResult)(req);
     if (!errors.isEmpty()) {
-        return res.status(422).json({
-            message: "Validation failed, incorrect data.",
-            errors: errors.array(),
-        });
+        var error_1 = new Error("Validation failed, incorrect data.");
+        error_1.statusCode = 422;
+        error_1.errorArray = errors.array();
+        // return res.status(422).json({
+        //   message: "Validation failed, incorrect data.",
+        //   errors: errors.array(),
+        // });
+        return next(error_1);
     }
     var body = req.body;
     var name = body.name;
