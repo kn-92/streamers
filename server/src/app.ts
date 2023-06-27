@@ -1,18 +1,48 @@
 import express from "express";
 import bodyParser from "body-parser";
+import "dotenv/config";
+import mongoose from "mongoose";
+import cors from "cors";
 
 import streamersRoutes from "./routes/streamers";
 
 const app = express();
 
+const PORT = process.env.PORT;
+const URI = process.env.DATABASE_STRING as string;
+
+app.use(cors());
 app.use(bodyParser.json());
 
-app.use(streamersRoutes);
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader(
+//     "Access-Control-Allow-Origin",
+//     "OPTIONS, GET, POST, PUT, PATCH"
+//   );
+//   res.setHeader("Access-Control-Allow-Origin", "Content-Type, Authorization");
+//   next();
+// });
 
-app.get("/", (req, res, next) => {
-  res.status(200).json({ message: "Server is alive!" });
+app.use("/", streamersRoutes);
+
+// app.get("/", (req, res, next) => {
+//   res.status(200).send("<h1>Server is alive!!! </h1>");
+//   next();
+// });
+
+app.use((req, res, next) => {
+  res.status(404).send("<h1>Page not found</h1>");
+  next();
 });
 
-app.listen(5000, () => {
-  console.log("Server is running!!!");
-});
+mongoose.connect(URI).then(
+  () => {
+    app.listen(PORT, () => {
+      console.log("Server is running!!!");
+    });
+  },
+  (err) => {
+    console.log(err);
+  }
+);
