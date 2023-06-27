@@ -7,7 +7,7 @@ import axios from "axios";
 export const postStreamer = createAsyncThunk(
   "postStreamer",
   async (data: FormValues, thunkApi) => {
-    const URL = `https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/`;
+    const URL = `http://localhost:5000/streamers`;
     try {
       const response = await axios.post(URL, data);
       return response.data;

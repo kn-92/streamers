@@ -1,9 +1,17 @@
 import { RequestHandler } from "express";
+import { validationResult } from "express-validator/src/validation-result";
 
 import { Streamer } from "../models/streamer";
 import { RequestBody } from "../types";
 
 export const postStreamer: RequestHandler = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({
+      message: "Validation failed, incorrect data.",
+      errors: errors.array(),
+    });
+  }
   const body = req.body as RequestBody;
   const name = body.name;
   const platform = body.platform;
@@ -25,5 +33,6 @@ export const postStreamer: RequestHandler = (req, res, next) => {
       });
     })
     .catch((err) => console.log(err));
-  next();
 };
+
+// export const getStreamers: RequestHandler = (req, res, next) => {};
