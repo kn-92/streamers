@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getStreamers = exports.postStreamer = void 0;
+exports.getStreamer = exports.getStreamers = exports.postStreamer = void 0;
 var validation_result_1 = require("express-validator/src/validation-result");
 var streamer_1 = require("../models/streamer");
 var postStreamer = function (req, res, next) {
@@ -104,3 +104,30 @@ var getStreamers = function (req, res, next) { return __awaiter(void 0, void 0, 
     });
 }); };
 exports.getStreamers = getStreamers;
+var getStreamer = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var streamerId, streamer, error_2, err;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                streamerId = req.params.streamerId;
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 3, , 4]);
+                return [4 /*yield*/, streamer_1.Streamer.findById(streamerId)];
+            case 2:
+                streamer = _a.sent();
+                res
+                    .status(200)
+                    .json({ message: "Streamer fetched successfully.", streamers: streamer });
+                return [3 /*break*/, 4];
+            case 3:
+                error_2 = _a.sent();
+                console.log(error_2);
+                err = new Error("No streamer with provided id in database.");
+                err.statusCode = 404;
+                return [2 /*return*/, next(err)];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); };
+exports.getStreamer = getStreamer;

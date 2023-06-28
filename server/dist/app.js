@@ -24,7 +24,7 @@ app.use(body_parser_1.default.json());
 //   res.setHeader("Access-Control-Allow-Origin", "Content-Type, Authorization");
 //   next();
 // });
-app.use("/", streamers_1.default);
+app.use("/streamers", streamers_1.default);
 // app.get("/", (req, res, next) => {
 //   res.status(200).send("<h1>Server is alive!!! </h1>");
 //   next();

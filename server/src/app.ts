@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 //   next();
 // });
 
-app.use("/", streamersRoutes);
+app.use("/streamers", streamersRoutes);
 
 // app.get("/", (req, res, next) => {
 //   res.status(200).send("<h1>Server is alive!!! </h1>");

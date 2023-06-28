@@ -2,15 +2,23 @@ import { Router } from "express";
 
 import { body } from "express-validator";
 
-import { postStreamer, getStreamers } from "../controllers/streamers";
+import {
+  postStreamer,
+  getStreamers,
+  getStreamer,
+} from "../controllers/streamers";
 
 const router = Router();
+
+// GET /streamers/:streamerId
+router.get("/:streamerId", getStreamer);
+
 // GET /streamers
-router.get("/streamers", getStreamers);
+router.get("/", getStreamers);
 
 // POST /streamers
 router.post(
-  "/streamers",
+  "/",
   [
     body("name")
       .trim()

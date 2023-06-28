@@ -71,3 +71,21 @@ export const getStreamers: RequestHandler = async (req, res, next) => {
     return next(err);
   }
 };
+
+export const getStreamer: RequestHandler = async (req, res, next) => {
+  const streamerId = req.params.streamerId;
+  try {
+    const streamer = await Streamer.findById(streamerId);
+    res
+      .status(200)
+      .json({ message: "Streamer fetched successfully.", streamers: streamer });
+  } catch (error) {
+    console.log(error);
+    const err: StatusError = new Error(
+      "No streamer with provided id in database."
+    );
+    err.statusCode = 404;
+
+    return next(err);
+  }
+};
