@@ -6,6 +6,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
 
 import { getStreamers } from "../../../redux/api";
+import { useAppSelector } from "../../../redux/hooks";
+import { StreamerData } from "../../../types";
 
 const StreamerDetails = () => {
   const navigate = useNavigate();
@@ -18,6 +20,10 @@ const StreamerDetails = () => {
     getStreamers
   );
 
+  const { name, description, platform }: StreamerData = useAppSelector(
+    (state) => state.streamers.data.streamers
+  );
+  // console.log(streamerData.name + " from details");
   return (
     <div className="details-container">
       <div onClick={handleBackToHomepage} className="back">
@@ -29,9 +35,9 @@ const StreamerDetails = () => {
           <img className="image" src={photo} alt="streamer-name" />
         </div>
         <div className="info-box">
-          <p>Coco</p>
-          <p>Best streamer in the world!!!!!!</p>
-          <p>YouTube</p>
+          <p>{name}</p>
+          <p>{description}</p>
+          <p>{platform}</p>
         </div>
       </div>
     </div>

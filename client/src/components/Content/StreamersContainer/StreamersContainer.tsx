@@ -16,16 +16,17 @@ const StreamersContainer = () => {
 
   return (
     <div className="streamers-container">
-      {streamersData?.map((streamer) => (
-        <StreamerLink
-          name={streamer.name}
-          platform={streamer.platform}
-          upVotes={streamer.upVotes}
-          downVotes={streamer.downVotes}
-          id={streamer._id}
-          key={streamer._id}
-        />
-      ))}
+      {Array.isArray(streamersData) &&
+        streamersData?.map((streamer) => (
+          <StreamerLink
+            name={streamer.name}
+            platform={streamer.platform}
+            upVotes={streamer.upVotes}
+            downVotes={streamer.downVotes}
+            id={streamer._id}
+            key={streamer._id}
+          />
+        ))}
     </div>
   );
 };
