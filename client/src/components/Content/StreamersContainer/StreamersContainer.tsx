@@ -22,6 +22,7 @@ const StreamersContainer = () => {
           platform={streamer.platform}
           upVotes={streamer.upVotes}
           downVotes={streamer.downVotes}
+          id={streamer._id}
           key={streamer._id}
         />
       ))}

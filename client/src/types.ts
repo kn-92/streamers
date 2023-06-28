@@ -27,4 +27,5 @@ export type StreamerLinkProps = {
   platform: string;
   upVotes?: number;
   downVotes?: number;
+  id: string;
 };

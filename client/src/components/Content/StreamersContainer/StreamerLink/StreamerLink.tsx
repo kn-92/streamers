@@ -10,11 +10,12 @@ const StreamerLink = ({
   platform,
   upVotes,
   downVotes,
+  id,
 }: StreamerLinkProps) => {
   const navigate = useNavigate();
 
   const handleNavigateToDetails = () => {
-    navigate("/details");
+    navigate(`details/${id}`);
   };
 
   return (

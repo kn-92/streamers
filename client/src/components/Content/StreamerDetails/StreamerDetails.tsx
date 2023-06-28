@@ -2,13 +2,21 @@ import "./StreamerDetails.scss";
 
 import photo from "../../../images/streamer-photo.jpg";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import useFetch from "../../../hooks/useFetch";
+
+import { getStreamers } from "../../../redux/api";
 
 const StreamerDetails = () => {
   const navigate = useNavigate();
   const handleBackToHomepage = () => {
     navigate("/");
   };
+  const { streamerId } = useParams();
+  const fetch = useFetch(
+    `http://localhost:5000/streamers/${streamerId}`,
+    getStreamers
+  );
 
   return (
     <div className="details-container">

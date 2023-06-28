@@ -10,7 +10,7 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route index path="/" element={<App />} />
-      <Route path="/details" element={<StreamerDetails />} />
+      <Route path="/details/:streamerId" element={<StreamerDetails />} />
     </>
   )
 );
