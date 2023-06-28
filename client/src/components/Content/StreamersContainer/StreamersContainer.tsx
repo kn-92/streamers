@@ -13,11 +13,14 @@ const StreamersContainer = () => {
   );
   console.log(streamersData);
   const fetch = useFetch(`http://localhost:5000/streamers`, getStreamers);
-
+  let reversedArray;
+  if (streamersData && streamersData.length > 1) {
+    reversedArray = [...streamersData].reverse();
+  }
   return (
     <div className="streamers-container">
-      {Array.isArray(streamersData) &&
-        streamersData?.map((streamer) => (
+      {Array.isArray(reversedArray) &&
+        reversedArray?.map((streamer) => (
           <StreamerLink
             name={streamer.name}
             platform={streamer.platform}

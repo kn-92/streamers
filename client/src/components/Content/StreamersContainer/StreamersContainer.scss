@@ -1,4 +1,6 @@
 .streamers-container {
     border: 1px solid black;
     width: 45%;
+    max-height: 80vh;
+    overflow-y: scroll;
 }

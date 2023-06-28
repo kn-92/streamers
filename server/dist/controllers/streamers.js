@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getStreamer = exports.getStreamers = exports.postStreamer = void 0;
+exports.voteAStreamer = exports.getStreamer = exports.getStreamers = exports.postStreamer = void 0;
 var validation_result_1 = require("express-validator/src/validation-result");
 var streamer_1 = require("../models/streamer");
 var postStreamer = function (req, res, next) {
@@ -131,3 +131,41 @@ var getStreamer = function (req, res, next) { return __awaiter(void 0, void 0, v
     });
 }); };
 exports.getStreamer = getStreamer;
+var voteAStreamer = function (req, res, next) {
+    var streamerId = req.params.streamerId;
+    var action = req.query.action;
+    console.log(action);
+    var streamer = streamer_1.Streamer.findById(streamerId)
+        .then(function (element) {
+        if (!element) {
+            var error = new Error("Could not find streamer");
+            error.statusCode = 404;
+            throw error;
+        }
+        if (action === "up") {
+            element.upVotes++;
+            return element.save();
+        }
+        else if (action === "down") {
+            element.downVotes++;
+            return element.save();
+        }
+        else {
+            res.status(200).json({ message: "Invalid action value" });
+            return element;
+        }
+    })
+        .then(function (result) {
+        res
+            .status(200)
+            .json({ message: "Streamer votes updated", streamers: result });
+    })
+        .catch(function (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        console.log(err);
+        next(err);
+    });
+};
+exports.voteAStreamer = voteAStreamer;

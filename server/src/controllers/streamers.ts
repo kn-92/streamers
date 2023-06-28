@@ -2,7 +2,7 @@ import { RequestHandler } from "express";
 import { validationResult } from "express-validator/src/validation-result";
 
 import { Streamer } from "../models/streamer";
-import { RequestBody, StatusError } from "../types";
+import { DBStreamer, RequestBody, StatusError } from "../types";
 
 export const postStreamer: RequestHandler = (req, res, next) => {
   const errors = validationResult(req);
@@ -88,4 +88,40 @@ export const getStreamer: RequestHandler = async (req, res, next) => {
 
     return next(err);
   }
+};
+
+export const voteAStreamer: RequestHandler = (req, res, next) => {
+  const streamerId = req.params.streamerId;
+  const action = req.query.action;
+  console.log(action);
+  const streamer: any = Streamer.findById(streamerId)
+    .then((element) => {
+      if (!element) {
+        const error: StatusError = new Error("Could not find streamer");
+        error.statusCode = 404;
+        throw error;
+      }
+      if (action === "up") {
+        element.upVotes++;
+        return element.save();
+      } else if (action === "down") {
+        element.downVotes++;
+        return element.save();
+      } else {
+        res.status(200).json({ message: "Invalid action value" });
+        return element;
+      }
+    })
+    .then((result) => {
+      res
+        .status(200)
+        .json({ message: "Streamer votes updated", streamers: result });
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      console.log(err);
+      next(err);
+    });
 };

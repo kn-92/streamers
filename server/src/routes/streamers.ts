@@ -6,9 +6,13 @@ import {
   postStreamer,
   getStreamers,
   getStreamer,
+  voteAStreamer,
 } from "../controllers/streamers";
 
 const router = Router();
+
+// GET /streamers/:streamerId/vote
+router.put("/:streamerId/vote", voteAStreamer);
 
 // GET /streamers/:streamerId
 router.get("/:streamerId", getStreamer);
