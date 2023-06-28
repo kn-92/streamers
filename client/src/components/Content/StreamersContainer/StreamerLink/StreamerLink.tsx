@@ -3,7 +3,14 @@ import photo from "../../../../images/streamer-photo.jpg";
 
 import { useNavigate } from "react-router-dom";
 
-const StreamerLink = () => {
+import { StreamerLinkProps } from "../../../../types";
+
+const StreamerLink = ({
+  name,
+  platform,
+  upVotes,
+  downVotes,
+}: StreamerLinkProps) => {
   const navigate = useNavigate();
 
   const handleNavigateToDetails = () => {
@@ -12,13 +19,13 @@ const StreamerLink = () => {
 
   return (
     <div className="streamerlink-container" onClick={handleNavigateToDetails}>
-      <img className="image" src={photo} alt="streamer-name" />
+      <img className="image" src={photo} alt={name} />
       <div className="details">
-        <div className="name">Name: Coco</div>
-        <div className="platform">Where to watch: YouTube</div>
+        <div className="name">{name}</div>
+        <div className="platform">{platform}</div>
         <div className="votes">
-          <div className="upvotes">Up: 0</div>
-          <div className="downvotes">Down: 0</div>
+          <div className="upvotes">{`Up: ${upVotes}`}</div>
+          <div className="downvotes">{`Down: ${downVotes}`}</div>
         </div>
       </div>
     </div>

@@ -83,7 +83,7 @@ var getStreamers = function (req, res, next) { return __awaiter(void 0, void 0, 
                 return [4 /*yield*/, streamer_1.Streamer.find()];
             case 1:
                 streamers = _a.sent();
-                if (streamers) {
+                if (!streamers) {
                     return [2 /*return*/, res
                             .status(200)
                             .json({ streamers: streamers, message: "No streamers in DB" })];

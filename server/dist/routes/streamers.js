@@ -4,7 +4,9 @@ var express_1 = require("express");
 var express_validator_1 = require("express-validator");
 var streamers_1 = require("../controllers/streamers");
 var router = (0, express_1.Router)();
+// GET /streamers
 router.get("/streamers", streamers_1.getStreamers);
+// POST /streamers
 router.post("/streamers", [
     (0, express_validator_1.body)("name")
         .trim()

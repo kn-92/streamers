@@ -36,7 +36,7 @@ app.use(function (req, res, next) {
 //error middleware
 app.use(error_1.errorMiddlewareController);
 mongoose_1.default.connect(URI).then(function () {
-    app.listen(PORT, function () {
+    app.listen(PORT || 6000, function () {
         console.log("Server is running!!!");
     });
 }, function (error) {

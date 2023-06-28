@@ -5,9 +5,10 @@ import { body } from "express-validator";
 import { postStreamer, getStreamers } from "../controllers/streamers";
 
 const router = Router();
-
+// GET /streamers
 router.get("/streamers", getStreamers);
 
+// POST /streamers
 router.post(
   "/streamers",
   [

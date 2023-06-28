@@ -42,7 +42,7 @@ app.use(errorMiddlewareController);
 
 mongoose.connect(URI).then(
   () => {
-    app.listen(PORT, () => {
+    app.listen(PORT || 6000, () => {
       console.log("Server is running!!!");
     });
   },

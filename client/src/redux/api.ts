@@ -16,3 +16,15 @@ export const postStreamer = createAsyncThunk(
     }
   }
 );
+
+export const getStreamers = createAsyncThunk(
+  "getStreamers",
+  async (url: string, thunkApi) => {
+    try {
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
+    }
+  }
+);
