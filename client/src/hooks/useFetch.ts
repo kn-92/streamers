@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useAppDispatch } from "../redux/hooks";
-// import { getStreamers } from "../redux/api";
 
-const useFetch = (url: string, asyncThunkFn: any) => {
+const useFetch = (url: string, asyncThunkFn: (url: string) => any) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {

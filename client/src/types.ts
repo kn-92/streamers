@@ -18,8 +18,8 @@ export type StreamerData = {
   description: string;
   name: string;
   platform: string;
-  upVotes?: number;
-  downVotes?: number;
+  upVotes: number;
+  downVotes: number;
 };
 
 export type PayloadActionDataStreamer = {

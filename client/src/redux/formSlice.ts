@@ -38,13 +38,10 @@ export const streamersSlice = createSlice({
         state.loading = false;
         state.error.push(action.payload as never);
       })
-      .addCase(voteAStreamer.pending, (state, action) => {
-        state.loading = true;
-      })
+      .addCase(voteAStreamer.pending, (state, action) => {})
       .addCase(
         voteAStreamer.fulfilled,
         (state, action: PayloadAction<PayloadActionDataStreamer>) => {
-          state.loading = false;
           const index = state.data.streamers.findIndex(
             (streamer: StreamerData) =>
               streamer._id === action.payload.streamer._id
@@ -53,7 +50,6 @@ export const streamersSlice = createSlice({
         }
       )
       .addCase(voteAStreamer.rejected, (state, action) => {
-        state.loading = false;
         state.error.push(action.payload as never);
       });
   },

@@ -4,9 +4,6 @@ import { useAppDispatch } from "../../../redux/hooks";
 import { postStreamer } from "../../../redux/api";
 import { FormValues } from "../../../types";
 
-import useFetch from "../../../hooks/useFetch";
-import { getStreamers } from "../../../redux/api";
-
 const Form = () => {
   const dispatch = useAppDispatch();
 
@@ -61,7 +58,6 @@ const Form = () => {
           <option value="TikTok">TikTok</option>
           <option value="Kick">Kick</option>
           <option value="Rumble">Rumble</option>
-          {/* <option value="cos">cos</option> */}
         </select>
         {errors.platform?.message && (
           <p className="form-error-message">

@@ -9,6 +9,8 @@ import { getStreamers } from "../../../redux/api";
 import { useAppSelector } from "../../../redux/hooks";
 import { StreamerData } from "../../../types";
 
+import MoonLoader from "react-spinners/MoonLoader";
+
 const StreamerDetails = () => {
   const navigate = useNavigate();
   const handleBackToHomepage = () => {
@@ -19,11 +21,19 @@ const StreamerDetails = () => {
     `http://localhost:5000/streamers/${streamerId}`,
     getStreamers
   );
+  const loading = useAppSelector((state) => state.streamers.loading);
 
   const { name, description, platform }: StreamerData = useAppSelector(
     (state) => state.streamers.data.streamers
   );
-  // console.log(streamerData.name + " from details");
+
+  if (loading)
+    return (
+      <div className="spinner-container">
+        <MoonLoader color="#d736af" />
+      </div>
+    );
+
   return (
     <div className="details-container">
       <div onClick={handleBackToHomepage} className="back">
