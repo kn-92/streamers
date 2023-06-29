@@ -1,3 +1,14 @@
+Project in this repository is an fullstack app using React(Typescript) on frontend and Node.js/Express(Typescript) on backend and MongoDB Cloud database.
+
+On the main screen application fetches streamers data from the database and displays them in scrollable list.
+It also has a form which enables to add a new streamer to the database.
+Form is validated and submitted by using react-hook-form library.
+
+The app enables showing details about streamer after click on every item in the displayed list by moving to details page.
+The app has a feature to upvote and downvote for a streamer by clicking on up or down buttons in the item at list.
+
+Application is using redux toolkit query as a state manager and source of truth and it also sends request to api with usage of Async Thunk.
+
 ## Available Scripts
 
 In the project CLIENT directory you can run:
