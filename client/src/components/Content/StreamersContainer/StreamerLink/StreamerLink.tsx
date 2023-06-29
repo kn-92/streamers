@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { StreamerLinkProps } from "../../../../types";
 
-import { useAppDispatch } from "../../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { voteAStreamer } from "../../../../redux/api";
 
 const StreamerLink = ({

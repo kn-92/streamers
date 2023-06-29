@@ -45,10 +45,6 @@ var postStreamer = function (req, res, next) {
         var error = new Error("Validation failed, incorrect data.");
         error.statusCode = 422;
         error.errorArray = errors.array();
-        // return res.status(422).json({
-        //   message: "Validation failed, incorrect data.",
-        //   errors: errors.array(),
-        // });
         return next(error);
     }
     var body = req.body;
@@ -134,7 +130,6 @@ exports.getStreamer = getStreamer;
 var voteAStreamer = function (req, res, next) {
     var streamerId = req.params.streamerId;
     var action = req.query.action;
-    console.log(action);
     var streamer = streamer_1.Streamer.findById(streamerId)
         .then(function (element) {
         if (!element) {

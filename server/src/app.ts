@@ -15,22 +15,7 @@ const URI = process.env.DATABASE_STRING as string;
 app.use(cors());
 app.use(bodyParser.json());
 
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader(
-//     "Access-Control-Allow-Origin",
-//     "OPTIONS, GET, POST, PUT, PATCH"
-//   );
-//   res.setHeader("Access-Control-Allow-Origin", "Content-Type, Authorization");
-//   next();
-// });
-
 app.use("/streamers", streamersRoutes);
-
-// app.get("/", (req, res, next) => {
-//   res.status(200).send("<h1>Server is alive!!! </h1>");
-//   next();
-// });
 
 app.use((req, res, next) => {
   res.status(404).send("<h1>Page not found</h1>");

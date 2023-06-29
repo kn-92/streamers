@@ -2,7 +2,7 @@ import { RequestHandler } from "express";
 import { validationResult } from "express-validator/src/validation-result";
 
 import { Streamer } from "../models/streamer";
-import { DBStreamer, RequestBody, StatusError } from "../types";
+import { RequestBody, StatusError } from "../types";
 
 export const postStreamer: RequestHandler = (req, res, next) => {
   const errors = validationResult(req);
@@ -10,10 +10,6 @@ export const postStreamer: RequestHandler = (req, res, next) => {
     const error: StatusError = new Error("Validation failed, incorrect data.");
     error.statusCode = 422;
     error.errorArray = errors.array();
-    // return res.status(422).json({
-    //   message: "Validation failed, incorrect data.",
-    //   errors: errors.array(),
-    // });
     return next(error);
   }
   const body = req.body as RequestBody;
@@ -40,18 +36,6 @@ export const postStreamer: RequestHandler = (req, res, next) => {
 };
 
 export const getStreamers: RequestHandler = async (req, res, next) => {
-  //   Streamer.find()
-  //     .then((result) =>
-  //       res
-  //         .status(200)
-  //         .json({ streamers: result, message: "Streamers fetched succesfully" })
-  //     )
-  //     .catch((error) => {
-  //       console.log(error);
-  //       const err: StatusError = new Error("Fetching from DB failed");
-  //       error.statusCode = 404;
-  //       return next(error);
-  //     });
   try {
     const streamers = await Streamer.find();
     if (!streamers) {
@@ -93,7 +77,6 @@ export const getStreamer: RequestHandler = async (req, res, next) => {
 export const voteAStreamer: RequestHandler = (req, res, next) => {
   const streamerId = req.params.streamerId;
   const action = req.query.action;
-  console.log(action);
   const streamer: any = Streamer.findById(streamerId)
     .then((element) => {
       if (!element) {

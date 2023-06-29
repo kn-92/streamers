@@ -42,11 +42,13 @@ export const streamersSlice = createSlice({
       .addCase(
         voteAStreamer.fulfilled,
         (state, action: PayloadAction<PayloadActionDataStreamer>) => {
-          const index = state.data.streamers.findIndex(
-            (streamer: StreamerData) =>
-              streamer._id === action.payload.streamer._id
-          );
-          state.data.streamers[index] = action.payload.streamer;
+          if (Array.isArray(state.data.streamers)) {
+            const index = state.data.streamers.findIndex(
+              (streamer: StreamerData) =>
+                streamer._id === action.payload.streamer._id
+            );
+            state.data.streamers[index] = action.payload.streamer;
+          }
         }
       )
       .addCase(voteAStreamer.rejected, (state, action) => {

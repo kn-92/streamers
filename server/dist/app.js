@@ -15,20 +15,7 @@ var PORT = process.env.PORT;
 var URI = process.env.DATABASE_STRING;
 app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader(
-//     "Access-Control-Allow-Origin",
-//     "OPTIONS, GET, POST, PUT, PATCH"
-//   );
-//   res.setHeader("Access-Control-Allow-Origin", "Content-Type, Authorization");
-//   next();
-// });
 app.use("/streamers", streamers_1.default);
-// app.get("/", (req, res, next) => {
-//   res.status(200).send("<h1>Server is alive!!! </h1>");
-//   next();
-// });
 app.use(function (req, res, next) {
     res.status(404).send("<h1>Page not found</h1>");
     next();

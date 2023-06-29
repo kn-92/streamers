@@ -13,7 +13,6 @@ const StreamersContainer = () => {
     (state) => state.streamers.data.streamers
   );
   const loading = useAppSelector((state) => state.streamers.loading);
-  console.log(streamersData);
   const fetch = useFetch(`http://localhost:5000/streamers`, getStreamers);
   let reversedArray;
   if (streamersData && streamersData.length > 1) {
