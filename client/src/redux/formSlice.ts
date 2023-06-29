@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { State } from "../types";
+import { PayloadActionDataStreamer, State, StreamerData } from "../types";
 
-import { postStreamer, getStreamers } from "./api";
+import { postStreamer, getStreamers, voteAStreamer } from "./api";
 
 const initialState: State = {
   loading: false,
@@ -30,11 +30,29 @@ export const streamersSlice = createSlice({
       .addCase(getStreamers.pending, (state, action) => {
         state.loading = true;
       })
-      .addCase(getStreamers.fulfilled, (state, action: any) => {
+      .addCase(getStreamers.fulfilled, (state, action: PayloadAction) => {
         state.loading = false;
         state.data = action.payload;
       })
       .addCase(getStreamers.rejected, (state, action) => {
+        state.loading = false;
+        state.error.push(action.payload as never);
+      })
+      .addCase(voteAStreamer.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(
+        voteAStreamer.fulfilled,
+        (state, action: PayloadAction<PayloadActionDataStreamer>) => {
+          state.loading = false;
+          const index = state.data.streamers.findIndex(
+            (streamer: StreamerData) =>
+              streamer._id === action.payload.streamer._id
+          );
+          state.data.streamers[index] = action.payload.streamer;
+        }
+      )
+      .addCase(voteAStreamer.rejected, (state, action) => {
         state.loading = false;
         state.error.push(action.payload as never);
       });

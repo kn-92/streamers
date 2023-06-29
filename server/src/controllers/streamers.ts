@@ -115,7 +115,7 @@ export const voteAStreamer: RequestHandler = (req, res, next) => {
     .then((result) => {
       res
         .status(200)
-        .json({ message: "Streamer votes updated", streamers: result });
+        .json({ message: "Streamer votes updated", streamer: result });
     })
     .catch((err) => {
       if (!err.statusCode) {

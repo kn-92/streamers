@@ -22,6 +22,11 @@ export type StreamerData = {
   downVotes?: number;
 };
 
+export type PayloadActionDataStreamer = {
+  massage: string;
+  streamer: StreamerData;
+};
+
 export type StreamerLinkProps = {
   name: string;
   platform: string;

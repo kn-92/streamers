@@ -28,3 +28,15 @@ export const getStreamers = createAsyncThunk(
     }
   }
 );
+
+export const voteAStreamer = createAsyncThunk(
+  "voteAStreamer",
+  async (url: string, thunkApi) => {
+    try {
+      const response = await axios.put(url);
+      return response.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
+    }
+  }
+);

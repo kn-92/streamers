@@ -158,7 +158,7 @@ var voteAStreamer = function (req, res, next) {
         .then(function (result) {
         res
             .status(200)
-            .json({ message: "Streamer votes updated", streamers: result });
+            .json({ message: "Streamer votes updated", streamer: result });
     })
         .catch(function (err) {
         if (!err.statusCode) {
