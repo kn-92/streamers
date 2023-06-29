@@ -13,7 +13,7 @@ const Form = () => {
     formState: { errors },
     reset,
   } = useForm({
-    defaultValues: { name: "", platform: "Twitch", description: "" },
+    defaultValues: { name: "", platform: "", description: "" },
   });
 
   const submitForm: SubmitHandler<FormValues> = (data: FormValues) => {

@@ -1,4 +1,37 @@
 .form {
-    border: 1px solid black;
-    width: 45%;
+    min-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+    .input {
+        width: 50%;
+        margin-bottom: 10px;
+        input {
+            width: 70%;
+        }
+    }
+    .select {
+        width: 50%;
+        margin-bottom: 10px;
+        select {
+            width: 70%;
+        }
+    }
+    .streamer-description {
+        width: 50%;
+        margin-bottom: 10px;
+        textarea {
+            width: 70%;
+            height: 15vh
+        }
+    }
+    button {
+        padding: 10px 20px;
+    }
+}
+
+.form-error-message {
+    color: red;
+    font-size: 12px;
 }

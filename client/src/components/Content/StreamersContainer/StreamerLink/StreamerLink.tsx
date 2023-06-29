@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { StreamerLinkProps } from "../../../../types";
 
-import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { useAppDispatch } from "../../../../redux/hooks";
 import { voteAStreamer } from "../../../../redux/api";
 
 const StreamerLink = ({
@@ -35,24 +35,33 @@ const StreamerLink = ({
         <div className="name">{name}</div>
         <div className="platform">{platform}</div>
         <div className="votes">
-          <div
-            className="upvotes"
-            onClick={(e) =>
-              handleVote(
-                `http://localhost:5000/streamers/${id}/vote/?action=up`,
-                e
-              )
-            }
-          >{`Up: ${upVotes}`}</div>
-          <div
-            className="downvotes"
-            onClick={(e) =>
-              handleVote(
-                `http://localhost:5000/streamers/${id}/vote/?action=down`,
-                e
-              )
-            }
-          >{`Down: ${downVotes}`}</div>
+          <div className="upvotes">
+            {" "}
+            <button
+              onClick={(e) =>
+                handleVote(
+                  `http://localhost:5000/streamers/${id}/vote/?action=up`,
+                  e
+                )
+              }
+            >
+              &#8593;
+            </button>
+            {`Upvotes: ${upVotes}`}
+          </div>
+          <div className="downvotes">
+            <button
+              onClick={(e) =>
+                handleVote(
+                  `http://localhost:5000/streamers/${id}/vote/?action=down`,
+                  e
+                )
+              }
+            >
+              &#8595;
+            </button>
+            {`Downvotes: ${downVotes}`}
+          </div>
         </div>
       </div>
     </div>

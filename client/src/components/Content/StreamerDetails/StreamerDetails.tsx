@@ -2,11 +2,13 @@ import "./StreamerDetails.scss";
 
 import photo from "../../../images/streamer-photo.jpg";
 
+import { Helmet } from "react-helmet";
+import { useAppSelector } from "../../../redux/hooks";
+
 import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
 
 import { getStreamers } from "../../../redux/api";
-import { useAppSelector } from "../../../redux/hooks";
 import { StreamerData } from "../../../types";
 
 import MoonLoader from "react-spinners/MoonLoader";
@@ -21,11 +23,15 @@ const StreamerDetails = () => {
     `http://localhost:5000/streamers/${streamerId}`,
     getStreamers
   );
-  const loading = useAppSelector((state) => state.streamers.loading);
+  const loading = useAppSelector((state) => state.streamers?.loading);
 
-  const { name, description, platform }: StreamerData = useAppSelector(
+  const streamer: StreamerData = useAppSelector(
     (state) => state.streamers.data.streamers
   );
+
+  const name = streamer && streamer.name;
+  const platform = streamer && streamer.platform;
+  const description = streamer && streamer.description;
 
   if (loading)
     return (
@@ -36,18 +42,20 @@ const StreamerDetails = () => {
 
   return (
     <div className="details-container">
+      <Helmet>
+        <title>{`Streamer ${name}`}</title>
+      </Helmet>
       <div onClick={handleBackToHomepage} className="back">
-        {" "}
-        --Back to homepage
+        {"<-- Back to homepage"}
       </div>
       <div className="details-box">
         <div className="image-box">
           <img className="image" src={photo} alt="streamer-name" />
         </div>
         <div className="info-box">
-          <p>{name}</p>
-          <p>{description}</p>
-          <p>{platform}</p>
+          <p className="name-desc">{name}</p>
+          <p className="platform-desc">{platform}</p>
+          <p className="description-desc">{description}</p>
         </div>
       </div>
     </div>

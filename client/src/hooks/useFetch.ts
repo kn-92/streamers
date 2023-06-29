@@ -7,7 +7,6 @@ const useFetch = (url: string, asyncThunkFn: (url: string) => any) => {
   useEffect(() => {
     dispatch(asyncThunkFn(url));
   }, [url, dispatch, asyncThunkFn]);
-  return dispatch;
 };
 
 export default useFetch;

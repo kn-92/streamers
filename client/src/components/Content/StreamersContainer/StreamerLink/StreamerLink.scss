@@ -3,24 +3,44 @@
     padding: 15px 15px;
     display: flex;
     flex-direction: row;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+    &:hover {
+        scale: 1.02;
+    }
     .image {
         width: 80px;
         height: 80px;
         border-radius: 4px;
     }
     .details {
-        .name {}
-        .platform {}
+        margin-left: 10%;
+        width: 50%;
+        
+        .name {
+            font-weight: bold;
+        }
+        .platform {
+            color:rgb(14, 53, 112);
+            font-size: 12px;
+        }
         .votes {
-            // position: relative;
-            // .upvotes {
-            //     position: absolute;
-            //     z-index: 10;
-            // }
-            // .downvotes {
-            //     position: absolute;
-            //     z-index: 10;
-            // }
+            width: 100%;
+            font-weight: bold;
+            .upvotes {
+                color: rgb(0, 107, 0);
+                button {
+                    width: 30%;
+                }
+            }
+            .downvotes {
+                color: rgb(247, 96, 96);
+                button {
+                    width: 30%;
+                }
+            }
         }
     }
     
