@@ -11,17 +11,22 @@ import { getStreamers } from "../../../redux/api";
 import { StreamerData } from "../../../types";
 
 import MoonLoader from "react-spinners/MoonLoader";
+import ErrorMessageComponent from "../../../ErrorMessageComponent/ErrorMessageComponent";
 
 const StreamerDetails = () => {
   const navigate = useNavigate();
+
   const handleBackToHomepage = () => {
     navigate("/");
   };
+
   const { streamerId } = useParams();
+
   const fetch = useFetch(
     `http://localhost:5000/streamers/${streamerId}`,
     getStreamers
   );
+
   const loading = useAppSelector((state) => state.streamers?.loading);
 
   const streamer: StreamerData = useAppSelector(
@@ -41,6 +46,7 @@ const StreamerDetails = () => {
 
   return (
     <div className="details-container">
+      <ErrorMessageComponent />
       <div onClick={handleBackToHomepage} className="back">
         {"<-- Back to homepage"}
       </div>
