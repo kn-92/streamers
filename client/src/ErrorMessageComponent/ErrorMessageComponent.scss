@@ -1,0 +1,20 @@
+.error-message-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    justify-content: center;
+    align-items: flex-start;
+    top: 20px;
+    right: 20px;
+    width: 30%;
+    height: 10vh;
+    background-color: red;
+    border-radius: 8px;
+    font-weight: bold;
+    color: white;
+}
+
+.error-message-container-notVisible {
+    display: none;
+}

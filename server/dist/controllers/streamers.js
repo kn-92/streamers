@@ -61,7 +61,6 @@ var postStreamer = function (req, res, next) {
     streamer
         .save()
         .then(function (result) {
-        console.log(result);
         res.status(201).json({
             message: "Streamer posted successfully!",
             streamer: result,

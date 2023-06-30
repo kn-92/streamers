@@ -2,7 +2,6 @@ import "./StreamerDetails.scss";
 
 import photo from "../../../images/streamer-photo.jpg";
 
-import { Helmet } from "react-helmet";
 import { useAppSelector } from "../../../redux/hooks";
 
 import { useNavigate, useParams } from "react-router-dom";
@@ -42,9 +41,6 @@ const StreamerDetails = () => {
 
   return (
     <div className="details-container">
-      <Helmet>
-        <title>{`Streamer ${name}`}</title>
-      </Helmet>
       <div onClick={handleBackToHomepage} className="back">
         {"<-- Back to homepage"}
       </div>

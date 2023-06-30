@@ -26,7 +26,6 @@ export const postStreamer: RequestHandler = (req, res, next) => {
   streamer
     .save()
     .then((result) => {
-      console.log(result);
       res.status(201).json({
         message: "Streamer posted successfully!",
         streamer: result,
